@@ -1,22 +1,26 @@
 class Solution {
 public:
+    static bool comp(vector<int>& a, vector<int>& b){
+        if (a[0] != b[0]){
+            return a[0] < b[0];
+        }else{
+            return a[1] > b[1];
+        }
+    }
     int removeCoveredIntervals(vector<vector<int>>& intervals) {
         int n=intervals.size();
-        int count=n;
-        cout<<n<<endl;
-        sort(intervals.begin(),intervals.end());
-        for(int i=n-1;i>=1;i--){
-            for(int j=i-1;j>=0;j--){
-                if(intervals[i][1]<=intervals[j][1]){
-                    count--;                  
-                    break;
-                } else if((intervals[i][0]==intervals[j][0]) && (intervals[i][1]>=intervals[j][1])){
-                    intervals.erase(intervals.begin()+j);
-                    count--;
-                    break;
-                }
+        int count=0;
+        int _max=-1;
+        sort(intervals.begin(),intervals.end(),comp);
+        
+        for(auto &i:intervals) cout<<i[0]<<" "<<i[1]<<endl;
+         for (int i =0 ; i<intervals.size(); i++){
+            if (intervals[i][1] <= _max){
+                count ++;
+            }else{
+                _max = intervals[i][1];
             }
         }
-        return count;
+        return n-count;
     }
 };
