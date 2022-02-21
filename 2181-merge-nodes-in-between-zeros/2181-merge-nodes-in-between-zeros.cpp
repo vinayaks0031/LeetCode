@@ -11,11 +11,10 @@
 class Solution {
 public:
     ListNode* mergeNodes(ListNode* head) {
-        
+        head=head->next;
         ListNode* temp=head;
         ListNode* inser=head;
-        temp=temp->next;
-        int ans=0,count=0;
+        int ans=0;
         
         
         while(temp!=NULL){
@@ -24,18 +23,12 @@ public:
             }
             else{
                 inser->val=ans;
-                inser=inser->next;
+                if(temp->next==NULL) inser->next=NULL;
+                else inser=inser->next;
                 ans=0;
-                count++;
             }
             temp=temp->next;
         }
-        inser=head;
-        count--;
-        while(count--){
-            inser=inser->next;
-        }
-        inser->next=NULL;
         
         return head;
     }
