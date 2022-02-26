@@ -13,6 +13,7 @@ public:
                 for(int j=i+i;j<n;j+=i) primes[j]=0;
             }
         }
+        
         return count;
     }
 };
