@@ -16,21 +16,12 @@ public:
             if ( nums[i] != (++count) )
             {
                 int tn=tmp.size();
-                if(tn>1)
-                {
-                    ans.push_back(to_string(tmp[0])+"->"+to_string(tmp[tn-1]));
-                }
-                else
-                {
-                    ans.push_back(to_string(tmp[0]));
-                }
+                if(tn>1) ans.push_back(to_string(tmp[0])+"->"+to_string(tmp[tn-1]));
+                else ans.push_back(to_string(tmp[0]));
                 tmp={nums[i]};
                 count=nums[i];
             }
-            else
-            {
-                tmp.push_back(nums[i]);
-            } 
+            else tmp.push_back(nums[i]);
         }
         
         if(tmp.size()>1) ans.push_back(to_string(tmp[0])+"->"+to_string(tmp[tmp.size()-1]));
