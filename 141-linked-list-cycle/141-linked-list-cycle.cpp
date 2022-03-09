@@ -9,19 +9,19 @@
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-        unordered_map<ListNode*,int> umap;
+        //floyd cycle detection algorithm
+        ListNode* slow=head;
+        ListNode* fast=head;
         
         if(head==NULL) return false;
-        else umap[head]++;
-        head=head->next;
         
-        while(head!=NULL)
+        while(fast->next!=NULL && fast->next->next!=NULL)
         {
-            if(umap.find(head)!=umap.end()) return true;
-            else umap[head]++;
-            head=head->next;
+            slow=slow->next;
+            fast=fast->next->next;
+            
+            if(slow==fast) return true;
         }
-        
         return false;
     }
 };
