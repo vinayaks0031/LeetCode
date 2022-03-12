@@ -2,8 +2,10 @@ class Solution {
 private:
     void makeCombinations(int idx,vector<int>& candidates,int target,vector<int> &ds,int n,vector<vector<int>>& ans)
     {
-        if(target==0) ans.push_back(ds);
-        if(idx==n) return;
+        if(target==0){
+            ans.push_back(ds);
+            return;
+        } 
         
         int prev=-1;
         for(int i=idx;i<n;i++)
