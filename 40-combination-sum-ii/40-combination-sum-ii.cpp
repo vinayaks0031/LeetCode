@@ -3,13 +3,14 @@ private:
     void makeCombinations(int idx,vector<int>& candidates,int target,vector<int> &ds,int n,vector<vector<int>>& ans)
     {
         if(target==0) ans.push_back(ds);
-        if(idx==n || target<0) return;
+        if(idx==n) return;
         
         int prev=-1;
         for(int i=idx;i<n;i++)
         {
             if(prev!=candidates[i])
             {
+                if(target-candidates[i]<0) break;
                 prev=candidates[i];
                 ds.push_back(candidates[i]);
                 makeCombinations(i+1,candidates,target-candidates[i],ds,n,ans);
