@@ -1,28 +1,34 @@
 class Solution {
 public:
     bool isValid(string s) {
-        stack<char> t; // stack for storing opening parentheses
-        int i; // variable i to travel
         
-        for(auto i:s) // travel into whole string
+        stack<int> st;
+        st.push(s[0]);
+        int n=s.size();
+        char top='n';
+        
+        for(int i=1;i<n;)
         {
-            // if any opening parentheses, push into stack
-            if(i == '(' || i =='{' || i == '[')
-            {
-                t.push(i);
+            
+            if(!st.empty()) top=st.top();
+            else top='n';
+                
+            if((top=='{' && s[i]=='}') || (top=='(' && s[i]==')') || (top=='[' && s[i]==']'))
+            { 
+                st.pop();
+                if(i<n-1 && (s[i+1]=='{' || s[i+1]=='(' ||s[i+1]=='[' ))
+                {
+                    st.push(s[i+1]);
+                    i+=2;
+                }
+                else i++;
             }
             else
             {
-                // check condition for false
-                if(t.empty() || (t.top() == '(' && i != ')') || (t.top() == '{' && i != '}') || (t.top() == '[' && i != ']'))
-                {
-                    return false;
-                }
-                
-                t.pop(); // else pop from stack
+                st.push(s[i]);
+                i++;
             }
         }
-        
-        return t.empty(); // if stack is empty then it is valid, otherwise no
+        return st.empty();
     }
 };
