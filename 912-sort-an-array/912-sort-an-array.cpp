@@ -37,6 +37,10 @@ private:
             nums[k]=arr2[j];
             k++;j++;
         }
+        
+        delete []arr1;        
+        delete []arr2;
+
 
     }
     
