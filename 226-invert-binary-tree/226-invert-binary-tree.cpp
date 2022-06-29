@@ -10,20 +10,15 @@
  * };
  */
 class Solution {
-private:
-    void helper(TreeNode* root){
-        if(root==NULL) return;
-        
-        TreeNode* tmp=root->left;
-        root->left=root->right;
-        root->right=tmp;
-        
-        helper(root->left);
-        helper(root->right);
-    }
+
 public:
     TreeNode* invertTree(TreeNode* root) {
-        helper(root);
+        if(root)
+        {
+            swap(root->left,root->right);
+            invertTree(root->left);
+            invertTree(root->right);
+        }
         return root;
     }
 };
