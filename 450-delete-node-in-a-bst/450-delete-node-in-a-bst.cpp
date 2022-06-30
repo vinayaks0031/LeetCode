@@ -31,12 +31,9 @@ public:
             else
             {
                 TreeNode* tmp=root->right;
-                while(tmp->left!=NULL)
-                {
-                    tmp=tmp->left;
-                }
-                tmp->left=root->left;
-                return root->right;  
+                while(tmp->left!=NULL) tmp=tmp->left;
+                root->val=tmp->val;
+                root->right=deleteNode(root->right,tmp->val);
             }
         }
         return root;
