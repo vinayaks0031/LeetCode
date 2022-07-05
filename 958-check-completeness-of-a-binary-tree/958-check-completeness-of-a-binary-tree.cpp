@@ -20,18 +20,21 @@ public:
         {
             pair<TreeNode*,int> temp=q.front();
             q.pop();
-            v.push_back(temp.second);
+            TreeNode* node=temp.first;
+            int idx=temp.second;
             
-            if(v.size()>1 && v[v.size()-1] != v[v.size()-2]+1)
+            v.push_back(idx);
+            int n=v.size();          
+            if(n>1 && v[n-1] != v[n-2]+1)
                 return false;
             
-            if(temp.first->left) 
+            if(node->left) 
             {
-                q.push({temp.first->left,temp.second * 2});
+                q.push({node->left,idx * 2});
             }
-            if(temp.first->right)
+            if(node->right)
             {
-                q.push({temp.first->right,temp.second * 2 + 1});
+                q.push({node->right,idx * 2 + 1});
             }
         }
         
